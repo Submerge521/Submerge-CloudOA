@@ -2,6 +2,9 @@
 //
 package com.submerge.vo.system;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -9,21 +12,16 @@ import java.io.Serializable;
  * 角色查询实体
  * </p>
  *
- * @author qy
- * @since 2019-11-08
+ * @author Submerge
+ * @since 2024-04-05
  */
+@Setter
+@Getter
 public class SysRoleQueryVo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String roleName;
 
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
 }
 
