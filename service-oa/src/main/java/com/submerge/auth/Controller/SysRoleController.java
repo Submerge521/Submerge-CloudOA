@@ -3,8 +3,11 @@ package com.submerge.auth.Controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.submerge.auth.exception.BusinessException;
 import com.submerge.auth.service.SysRoleService;
-import com.submerge.common.result.Result;
+import com.submerge.common.result.BaseResponse;
+import com.submerge.common.result.ErrorCode;
+import com.submerge.common.result.ResultUtils;
 import com.submerge.model.system.SysRole;
 import com.submerge.vo.system.SysRoleQueryVo;
 import io.swagger.annotations.Api;
@@ -41,8 +44,8 @@ public class SysRoleController {
      */
     @GetMapping("/all")
     @ApiOperation("获取所有用户")
-    public Result<List<SysRole>> getAll() {
-        return Result.ok(sysRoleService.list());
+    public BaseResponse<List<SysRole>> getAll() {
+        return ResultUtils.success(sysRoleService.list());
     }
 
     /**
@@ -52,9 +55,9 @@ public class SysRoleController {
      */
     @ApiOperation("条件分页查询")
     @GetMapping("{page}/{limit}")
-    public Result getRoleByPage(@PathVariable Long page,
-                                @PathVariable Long limit,
-                                SysRoleQueryVo sysRoleQueryVo) {
+    public BaseResponse<IPage<SysRole>> getRoleByPage(@PathVariable Long page,
+                                                      @PathVariable Long limit,
+                                                      SysRoleQueryVo sysRoleQueryVo) {
         Page<SysRole> pageParam = new Page<>(page, limit);
         QueryWrapper<SysRole> sysRoleQueryWrapper = new QueryWrapper<>();
         String roleName = sysRoleQueryVo.getRoleName();
@@ -62,7 +65,7 @@ public class SysRoleController {
             sysRoleQueryWrapper.like("role_name", roleName);
         }
         IPage<SysRole> resultPage = sysRoleService.page(pageParam, sysRoleQueryWrapper);
-        return Result.ok(resultPage);
+        return ResultUtils.success(resultPage);
     }
 
     /**
@@ -70,12 +73,12 @@ public class SysRoleController {
      */
     @ApiOperation("添加角色")
     @PostMapping("/save")
-    public Result addRole(@RequestBody SysRole sysRole) {
+    public BaseResponse<Boolean> addRole(@RequestBody SysRole sysRole) {
         boolean save = sysRoleService.save(sysRole);
         if (save) {
-            return Result.ok(save);
+            return ResultUtils.success(true);
         } else {
-            return Result.fail();
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
     }
 
@@ -84,9 +87,9 @@ public class SysRoleController {
      */
     @ApiOperation("根据id查询角色")
     @GetMapping("/get/{id}")
-    public Result getRoleById(@PathVariable Long id) {
+    public BaseResponse<SysRole> getRoleById(@PathVariable Long id) {
         SysRole sysRole = sysRoleService.getById(id);
-        return Result.ok(sysRole);
+        return ResultUtils.success(sysRole);
     }
 
     /**
@@ -94,13 +97,13 @@ public class SysRoleController {
      */
     @ApiOperation("修改角色")
     @PostMapping("/update")
-    public Result updateRole(@RequestBody SysRole sysRole) {
+    public BaseResponse<Boolean> updateRole(@RequestBody SysRole sysRole) {
         boolean result = sysRoleService.updateById(sysRole);
         if (result) {
-            return Result.ok(result);
+            return ResultUtils.success(true);
 
         } else {
-            return Result.fail();
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
 
     }
@@ -110,12 +113,12 @@ public class SysRoleController {
      */
     @ApiOperation("根据id删除角色")
     @DeleteMapping("/remove/{id}")
-    public Result removeRole(@PathVariable Long id) {
+    public BaseResponse<Boolean> removeRole(@PathVariable Long id) {
         boolean result = sysRoleService.removeById(id);
         if (result) {
-            return Result.ok();
+            return ResultUtils.success(true);
         } else {
-            return Result.fail();
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
     }
 
@@ -124,14 +127,16 @@ public class SysRoleController {
      */
     @ApiOperation("批量删除角色")
     @DeleteMapping("/batchRemove")
-    public Result removeBatch(@RequestBody List<Long> ids) {
+    public BaseResponse<Boolean> removeBatch(@RequestBody List<Long> ids) {
         boolean result = sysRoleService.removeByIds(ids);
         if (result) {
-            return Result.ok();
+            return ResultUtils.success(true);
 
         } else {
-            return Result.fail();
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
     }
+
+
 
 }

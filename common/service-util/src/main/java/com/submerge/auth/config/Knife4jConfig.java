@@ -1,4 +1,4 @@
-package com.submerge.config;
+package com.submerge.auth.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
