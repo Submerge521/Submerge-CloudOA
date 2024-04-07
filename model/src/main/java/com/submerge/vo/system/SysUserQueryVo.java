@@ -11,6 +11,7 @@ import java.io.Serializable;
  * <p>
  * 用户查询实体
  * </p>
+ * @author Submerge
  */
 @Data
 public class SysUserQueryVo implements Serializable {
