@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.submerge.auth.exception.BusinessException;
 import com.submerge.auth.service.SysRoleService;
+import com.submerge.auth.service.SysUserRoleService;
 import com.submerge.common.result.BaseResponse;
 import com.submerge.common.result.ErrorCode;
 import com.submerge.common.result.ResultUtils;
 import com.submerge.model.system.SysRole;
+import com.submerge.vo.system.AssginRoleVo;
 import com.submerge.vo.system.SysRoleQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName: SysRoleController
@@ -36,6 +39,7 @@ public class SysRoleController {
 
     @Resource
     private SysRoleService sysRoleService;
+
 
     /**
      * 获取所有用户
@@ -136,6 +140,32 @@ public class SysRoleController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
     }
+
+    /**
+     * 查询所有角色和当前用户所属角色
+     * @param userId
+     * @return
+     */
+    @GetMapping("/toAssign/{userId}")
+    @ApiOperation("获取角色")
+    public BaseResponse<Map<String,Object>> toAssign(@PathVariable Long userId) {
+        if (userId == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Map<String,Object> map = sysRoleService.findRoleDataByUserId(userId);
+        return ResultUtils.success(map);
+
+    }
+
+    @ApiOperation("分配角色")
+    @PostMapping("/doAssign")
+    public void doAssign(@RequestBody AssginRoleVo assginRoleVo){
+        if(assginRoleVo == null){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        sysRoleService.doAssign(assginRoleVo);
+    }
+
 
 
 

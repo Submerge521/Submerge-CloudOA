@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Past;
 import java.util.List;
 
 /**
@@ -139,6 +140,14 @@ public class SysUserController {
         }
         boolean result = sysUserService.removeByIds(ids);
         return ResultUtils.success(result);
+    }
+
+    @GetMapping("/updateStatus/{id}/{status}")
+    @ApiOperation("更新用户状态")
+    public BaseResponse<SysUser> updateStatus(@PathVariable Long id,
+                                              @PathVariable Integer status){
+        sysUserService.updateStatus(id,status);
+        return ResultUtils.success(null);
     }
 
 
