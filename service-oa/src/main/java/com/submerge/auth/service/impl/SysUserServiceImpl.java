@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.submerge.auth.exception.BusinessException;
 import com.submerge.auth.mapper.SysUserMapper;
 import com.submerge.auth.service.SysUserService;
-import com.submerge.common.result.BaseResponse;
 import com.submerge.common.result.ErrorCode;
 import com.submerge.model.system.SysUser;
 import org.springframework.stereotype.Service;

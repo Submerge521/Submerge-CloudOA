@@ -2,23 +2,19 @@ package com.submerge.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.submerge.auth.exception.BusinessException;
 import com.submerge.auth.mapper.SysRoleMapper;
-import com.submerge.auth.mapper.SysUserRoleMapper;
 import com.submerge.auth.service.SysRoleService;
 import com.submerge.auth.service.SysUserRoleService;
 import com.submerge.common.result.ErrorCode;
 import com.submerge.model.system.SysRole;
 import com.submerge.model.system.SysUserRole;
 import com.submerge.vo.system.AssginRoleVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.management.ObjectName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +36,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Resource
     private SysUserRoleService sysUserRoleService;
 
+    /**
+     * 查询所有角色和当前用户所属角色
+     *
+     * @param userId
+     * @return
+     */
     @Override
     public Map<String, Object> findRoleDataByUserId(Long userId) {
         if (userId == null || userId <= 0) {
@@ -72,6 +74,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     /**
      * 为用户分配角色
+     *
      * @param assginRoleVo
      */
     @Override
@@ -79,15 +82,15 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     public void doAssign(AssginRoleVo assginRoleVo) {
         // 把用户角色删除
         QueryWrapper<SysUserRole> sysUserRoleQueryWrapper = new QueryWrapper<>();
-        sysUserRoleQueryWrapper.eq("user_id",assginRoleVo.getUserId());
+        sysUserRoleQueryWrapper.eq("user_id", assginRoleVo.getUserId());
         sysUserRoleService.remove(sysUserRoleQueryWrapper);
         // 重新进行分配
         List<Long> roleIdList = assginRoleVo.getRoleIdList();
-        for(Long roleId:roleIdList){
-            if(roleId == null || roleId <=0){
+        for (Long roleId : roleIdList) {
+            if (roleId == null || roleId <= 0) {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR);
             }
-           SysUserRole sysUserRole = new SysUserRole();
+            SysUserRole sysUserRole = new SysUserRole();
             sysUserRole.setUserId(assginRoleVo.getUserId());
             sysUserRole.setRoleId(roleId);
             sysUserRoleService.save(sysUserRole);

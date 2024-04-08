@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5e10903-cfd3-44c7-a38a-a884f58f053d" name="Changes" comment="add 用户管理相关接口&#10;add 跨域配置">
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/mapper/SysUserRoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/SysUserRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysUserRoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97e93870-ce5d-425d-a430-8b0ef090dc37.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97e93870-ce5d-425d-a430-8b0ef090dc37.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d572c09b-8cf8-43f0-982f-d5835c629bd4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d572c09b-8cf8-43f0-982f-d5835c629bd4.xml" afterDir="false" />
+    <list default="true" id="e5e10903-cfd3-44c7-a38a-a884f58f053d" name="Changes" comment="add 用户分配角色&#10;add 用户状态">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/submerge/vo/system/AssginRoleVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/submerge/vo/system/AssginRoleVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/Controller/SysRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/Controller/SysRoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/Controller/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/Controller/SysUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/ServiceAuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/ServiceAuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/SysRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/SysRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/SysUserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysRoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysUserRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysUserRoleServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/submerge/auth/service/impl/SysUserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +122,7 @@
       <workItem from="1712282136496" duration="11365000" />
       <workItem from="1712309739202" duration="1775000" />
       <workItem from="1712469547332" duration="13000" />
-      <workItem from="1712537921748" duration="7153000" />
+      <workItem from="1712537921748" duration="9558000" />
     </task>
     <task id="LOCAL-00001" summary="add 返回结果封装&#10;add 角色CRUD接口">
       <option name="closed" value="true" />
@@ -152,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712459530936</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add 用户分配角色&#10;add 用户状态">
+      <option name="closed" value="true" />
+      <created>1712545255874</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712545255874</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +157,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add 返回结果封装&#10;add 角色CRUD接口" />
     <MESSAGE value="add 用户管理相关接口&#10;add 跨域配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="add 用户管理相关接口&#10;add 跨域配置" />
+    <MESSAGE value="add 用户分配角色&#10;add 用户状态" />
+    <option name="LAST_COMMIT_MESSAGE" value="add 用户分配角色&#10;add 用户状态" />
   </component>
 </project>
